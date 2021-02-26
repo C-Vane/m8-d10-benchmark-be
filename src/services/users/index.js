@@ -200,7 +200,7 @@ usersRouter.post("/addorRemovelocation", authorize, async (req, res, next) => {
   try {
     const exists = req.user.favoriteLocations.indexOf(req.body.location.toLowerCase());
     req.user.favoriteLocations =
-      exists === -1 ? req.user.favoriteLocations.push(req.body.location.toLowerCase()) : [...req.user.favoriteLocations.slice(0, exists), ...req.user.favoriteLocations.slice(exists + 1)];
+      exists === -1 ? req.user.favoriteLocations.concat(req.body.location.toLowerCase()) : [...req.user.favoriteLocations.slice(0, exists), ...req.user.favoriteLocations.slice(exists + 1)];
     await req.user.save();
     res.send(req.user);
     if (Location) {

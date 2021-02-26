@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 
 const usersRouter = require("./services/users/index");
 
+const weatherRouter = require("./services/weather/index");
+
 const { notFoundHandler, forbiddenHandler, badRequestHandler, genericErrorHandler } = require("./tools/errorHandlers");
 
 const passport = require("passport");
@@ -44,6 +46,8 @@ server.use(cors(corsOptions));
 server.use(passport.initialize());
 
 server.use("/users", usersRouter);
+server.use("/weather", weatherRouter);
+
 // ERROR HANDLERS MIDDLEWARES
 
 server.use(badRequestHandler);
